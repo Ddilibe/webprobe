@@ -6,9 +6,14 @@ from bs4 import BeautifulSoup
 from httpx import Response
 
 from mcpwebprobe.types import SearchResult
-from mcpwebprobe.utils.http_client import AsyncHttpClient, BuildHttpRequestOptions
+from mcpwebprobe.utils.http_client import (
+    AsyncHttpClient,
+    BuildHttpRequestOptions,
+    HttpClient,
+)
 
 _async_http_client = AsyncHttpClient()
+_http_client = HttpClient()
 
 
 def _default_headers() -> dict[str, str]:
@@ -27,6 +32,7 @@ async def _duckduckgo_request(
     *,
     headers: dict[str, str] | None = None,
     timeout: float = 30.0,
+    goasync: bool = True,
     **kwargs,
 ) -> Response:
     options = BuildHttpRequestOptions(
@@ -34,7 +40,12 @@ async def _duckduckgo_request(
         timeout=timeout,
         validate_status=lambda status: status < 400,
     )
-    return await _async_http_client.request(method, url, options=options, **kwargs)
+
+    return (
+        await _async_http_client.request(method, url, options=options, **kwargs)
+        if goasync
+        else _http_client.request(method, url, options=options, **kwargs)
+    )
 
 
 def _parse_html_results(html: str) -> List[SearchResult]:

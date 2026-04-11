@@ -1,3 +1,8 @@
+[![Downloads](https://pepy.tech/badge/mcpwebprobe)](https://pepy.tech/project/mcpwebprobe)
+[![PyPI version](https://badge.fury.io/py/mcpwebprobe.svg)](https://badge.fury.io/py/mcpwebprobe)
+[![Wheel](https://img.shields.io/pypi/wheel/mcpwebprobe.svg)](https://pypi.com/project/mcpwebprobe)
+[![licence](https://img.shields.io/pypi/l/mcpwebprobe.svg)](https://opensource.org/licenses/MIT)
+
 # WebProbe (Python port of open-webSearch)
 
 This project replicates the core search and fetch capabilities of [Aas-ee/open-webSearch](https://github.com/Aas-ee/open-webSearch) using Python. It exposes a CLI that can:
