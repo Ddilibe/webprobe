@@ -1,11 +1,11 @@
 import httpx
 import pytest
 
-from webprobe.engines.fetch_csdn import fetch_csdn_article
-from webprobe.engines.fetch_juejin import fetch_juejin_article
-from webprobe.engines.fetch_linuxdo import fetch_linuxdo_article
-from webprobe.engines.github import fetch_github_readme
-import webprobe.utils.csdn as csdn_module
+from mcpwebprobe.engines.fetch_csdn import fetch_csdn_article
+from mcpwebprobe.engines.fetch_juejin import fetch_juejin_article
+from mcpwebprobe.engines.fetch_linuxdo import fetch_linuxdo_article
+from mcpwebprobe.engines.github import fetch_github_readme
+import mcpwebprobe.utils.csdn as csdn_module
 
 
 @pytest.mark.asyncio

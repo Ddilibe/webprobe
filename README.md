@@ -70,8 +70,3 @@ Set `USE_PROXY=true` to route all HTTP traffic through `PROXY_URL`.
 - `src/engines/*` implement individual search/fetch adapters for each provider.
 - `src/utils/` contains HTTP helpers, Playwright bridges for future browser fallbacks, and shared fetch logic for CSDN articles.
 
-## Next steps
-
-1. Wire this CLI into an MCP server similar to the TypeScript runtime.
-2. Add Playwright-backed fallbacks for blocked search pages and protected articles.
-3. Extend fetchers with generic web extraction (`fetch_web_content`) as in the original repo.

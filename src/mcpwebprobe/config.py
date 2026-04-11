@@ -3,7 +3,7 @@ from typing import Optional, List, Literal, Union
 from dataclasses import dataclass
 from urllib.parse import quote
 
-from webprobe.logging import get_logger
+from mcpwebprobe.logging import get_logger
 
 # Type aliases for better type hints
 SearchEngine = Literal[

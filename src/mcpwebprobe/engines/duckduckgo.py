@@ -5,8 +5,8 @@ from typing import List
 from bs4 import BeautifulSoup
 from httpx import Response
 
-from webprobe.types import SearchResult
-from webprobe.utils.http_client import AsyncHttpClient, BuildHttpRequestOptions
+from mcpwebprobe.types import SearchResult
+from mcpwebprobe.utils.http_client import AsyncHttpClient, BuildHttpRequestOptions
 
 _async_http_client = AsyncHttpClient()
 

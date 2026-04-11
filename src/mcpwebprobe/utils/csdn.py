@@ -6,14 +6,14 @@ from typing import Optional, Dict, Any, Tuple
 import httpx
 from bs4 import BeautifulSoup
 
-from webprobe.logging import get_logger
+from mcpwebprobe.logging import get_logger
 
-from webprobe.utils.browser_cookies import (
+from mcpwebprobe.utils.browser_cookies import (
     fetch_page_html_with_browser,
     get_browser_cookie_header,
     looks_like_bot_challenge_page,
 )
-from webprobe.utils.http_client import (
+from mcpwebprobe.utils.http_client import (
     BuildHttpRequestOptions,
     build_http_request_options,
     get_default_http_client,

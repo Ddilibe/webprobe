@@ -1,23 +1,22 @@
 from __future__ import annotations
 
 from typing import List
-from urllib.parse import urlparse
 
 from bs4 import BeautifulSoup
 
-from webprobe.types import SearchResult
-from webprobe.utils.http_client import AsyncHttpClient, BuildHttpRequestOptions
+from mcpwebprobe.types import SearchResult
+from mcpwebprobe.utils.http_client import AsyncHttpClient, BuildHttpRequestOptions
 
 _async_http_client = AsyncHttpClient()
-_BAIDU_SEARCH_URL = "https://www.baidu.com/s"
+_BRAVE_SEARCH_URL = "https://search.brave.com/search"
 
 
 def _default_headers() -> dict[str, str]:
     return {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
         "(KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36",
-        "Accept-Language": "zh-CN,zh;q=0.9",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+        "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
         "Connection": "keep-alive",
     }
 
@@ -25,7 +24,7 @@ def _default_headers() -> dict[str, str]:
 async def _request(params: dict[str, str]) -> str:
     response = await _async_http_client.request(
         "GET",
-        _BAIDU_SEARCH_URL,
+        _BRAVE_SEARCH_URL,
         options=BuildHttpRequestOptions(
             headers=_default_headers(),
             timeout=30.0,
@@ -36,57 +35,58 @@ async def _request(params: dict[str, str]) -> str:
     return response.text
 
 
-def _normalize_text(text: str) -> str:
-    return " ".join(text.split()).strip()
-
-
 def _parse_results(html: str) -> List[SearchResult]:
     soup = BeautifulSoup(html, "html.parser")
     results: List[SearchResult] = []
 
-    for container in soup.select("div.result.c-container, div.result-op"):
-        title_el = container.select_one("h3, .c-title")
-        link_el = title_el.select_one("a") if title_el else container.select_one("a")
-        if not link_el:
+    for item in soup.select("#results .snippet, .snippet"):
+        content = item.select_one(".result-content")
+        if content is None:
             continue
 
-        href = link_el.get("href") or ""
-        if not href.startswith("http"):
+        link = content.find("a", recursive=False)
+        if link is None:
+            link = content.select_one("a")
+        if link is None:
             continue
 
-        title = _normalize_text(title_el.get_text() if title_el else link_el.get_text())
-        snippet_el = container.select_one(".c-abstract, .c-span18")
-        source_el = container.select_one(".c-showurl, .f13, cite")
+        title_el = link.select_one(".search-snippet-title")
+        title = title_el.get_text(strip=True) if title_el else link.get_text(strip=True)
+        description_el = content.select_one(".generic-snippet")
+        description = description_el.get_text(strip=True) if description_el else ""
+        source_el = link.select_one(".site-name-wrapper")
+        source = source_el.get_text(strip=True) if source_el else ""
+        url = link.get("href") or ""
 
-        description = _normalize_text(snippet_el.get_text()) if snippet_el else ""
-        source = _normalize_text(source_el.get_text()) if source_el else ""
+        if not url or not title:
+            continue
 
         results.append(
             SearchResult(
                 title=title,
-                url=href,
+                url=url,
                 description=description,
-                source=source or (urlparse(href).hostname or ""),
-                engine="baidu",
+                source=source,
+                engine="brave",
             )
         )
 
     return results
 
 
-async def search_baidu(query: str, limit: int) -> List[SearchResult]:
+async def search_brave(query: str, limit: int) -> List[SearchResult]:
     if limit <= 0:
         return []
 
     results: List[SearchResult] = []
-    pn = 0
+    offset = 0
+    per_page = 10
 
     while len(results) < limit:
         params = {
-            "wd": query,
-            "pn": str(pn),
-            "ie": "utf-8",
-            "tn": "98012088_4_pg",
+            "q": query,
+            "source": "web",
+            "offset": str(offset),
         }
 
         html = await _request(params)
@@ -95,11 +95,11 @@ async def search_baidu(query: str, limit: int) -> List[SearchResult]:
         if not page_results:
             break
 
-        for result in page_results:
+        for entry in page_results:
             if len(results) >= limit:
                 break
-            results.append(result)
+            results.append(entry)
 
-        pn += 10
+        offset += per_page
 
     return results[:limit]

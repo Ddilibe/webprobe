@@ -2,18 +2,18 @@ import asyncio
 import json
 from typing import Iterable, List, Optional, Sequence
 
-from webprobe.config import config
-from webprobe.engine.registry import SEARCH_SERVICE
-from webprobe.engine.search_service import (
+from mcpwebprobe.config import config
+from mcpwebprobe.engine.registry import SEARCH_SERVICE
+from mcpwebprobe.engine.search_service import (
     normalize_engine_name,
     resolve_requested_engines,
     SearchExecutionResult,
 )
-from webprobe.engines.fetch_csdn import fetch_csdn_article
-from webprobe.engines.fetch_juejin import fetch_juejin_article
-from webprobe.engines.fetch_linuxdo import fetch_linuxdo_article
-from webprobe.engines.github import fetch_github_readme
-from webprobe.logging import get_logger
+from mcpwebprobe.engines.fetch_csdn import fetch_csdn_article
+from mcpwebprobe.engines.fetch_juejin import fetch_juejin_article
+from mcpwebprobe.engines.fetch_linuxdo import fetch_linuxdo_article
+from mcpwebprobe.engines.github import fetch_github_readme
+from mcpwebprobe.logging import get_logger
 
 logger = get_logger(__name__)
 

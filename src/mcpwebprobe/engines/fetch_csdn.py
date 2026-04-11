@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Dict
 
-from webprobe.utils.csdn import fetch_csdn_article as _fetch_csdn_article
+from mcpwebprobe.utils.csdn import fetch_csdn_article as _fetch_csdn_article
 
 
 async def fetch_csdn_article(url: str) -> Dict[str, str]:

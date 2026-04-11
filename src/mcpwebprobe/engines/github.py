@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 from typing import List, Optional
 
-from webprobe.utils.http_client import AsyncHttpClient, BuildHttpRequestOptions
+from mcpwebprobe.utils.http_client import AsyncHttpClient, BuildHttpRequestOptions
 
 _async_http_client = AsyncHttpClient()
 _README_CANDIDATES: List[str] = [

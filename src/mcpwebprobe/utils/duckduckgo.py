@@ -9,7 +9,7 @@ import httpx
 from bs4 import BeautifulSoup
 from tenacity import retry, stop_after_attempt, wait_exponential
 
-from webprobe.types import SearchResult
+from mcpwebprobe.types import SearchResult
 from src.utils.http_request import build_http_request_options, BuildHttpRequestOptions
 
 

@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import List
 
-from webprobe.types import SearchResult
-from webprobe.utils.http_client import AsyncHttpClient, BuildHttpRequestOptions
+from mcpwebprobe.types import SearchResult
+from mcpwebprobe.utils.http_client import AsyncHttpClient, BuildHttpRequestOptions
 
 _async_http_client = AsyncHttpClient()
 _JUEJIN_SEARCH_URL = "https://api.juejin.cn/search_api/v1/search"

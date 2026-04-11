@@ -4,7 +4,7 @@ from typing import Dict, List
 
 from bs4 import BeautifulSoup
 
-from webprobe.utils.http_client import AsyncHttpClient, BuildHttpRequestOptions
+from mcpwebprobe.utils.http_client import AsyncHttpClient, BuildHttpRequestOptions
 
 _async_http_client = AsyncHttpClient()
 _JUEJIN_HEADERS = {

@@ -12,7 +12,7 @@ from typing import (
     Sequence,
 )
 
-from webprobe.types import SearchResult
+from mcpwebprobe.types import SearchResult
 
 SearchEngineExecutor = Callable[[str, int], Awaitable[List[SearchResult]]]
 SearchEngineExecutorMap = Dict[str, SearchEngineExecutor]

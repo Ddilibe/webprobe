@@ -4,8 +4,8 @@ from datetime import datetime
 from typing import List
 from urllib.parse import urlparse
 
-from webprobe.types import SearchResult
-from webprobe.utils.http_client import AsyncHttpClient, BuildHttpRequestOptions
+from mcpwebprobe.types import SearchResult
+from mcpwebprobe.utils.http_client import AsyncHttpClient, BuildHttpRequestOptions
 
 _async_http_client = AsyncHttpClient()
 _EXA_SEARCH_URL = "https://exa.ai/search/api/search-fast"

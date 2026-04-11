@@ -8,8 +8,8 @@ from urllib.parse import urlencode
 
 from bs4 import BeautifulSoup
 
-from webprobe.types import SearchResult
-from webprobe.utils.http_client import AsyncHttpClient, BuildHttpRequestOptions
+from mcpwebprobe.types import SearchResult
+from mcpwebprobe.utils.http_client import AsyncHttpClient, BuildHttpRequestOptions
 
 _BASE_URL = "https://www.startpage.com"
 _SEARCH_URL = f"{_BASE_URL}/sp/search"

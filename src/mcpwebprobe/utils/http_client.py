@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from urllib.parse import urlparse
 
 import httpx
-from webprobe.config import get_proxy_url
+from mcpwebprobe.config import get_proxy_url
 
 
 @dataclass

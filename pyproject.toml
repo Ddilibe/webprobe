@@ -1,5 +1,5 @@
 [project]
-name = "webprobe"
+name = "mcpwebprobe"
 version = "0.1.0"
 description = "Python port of open-webSearch."
 readme = "README.md"
@@ -11,6 +11,15 @@ dependencies = [
     "pytest>=9.0.3,<9.1",
     "pytest-asyncio>=0.22.0",
 ]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
 
 [project.scripts]
 webprobe = "webprobe:main"
@@ -18,3 +27,13 @@ webprobe = "webprobe:main"
 [build-system]
 requires = ["uv_build>=0.9.10,<0.10.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "build>=1.4.3",
+    "twine>=6.2.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Ddilibe/webprobe"
+Issues = "https://github.com/Ddilibe/webprobe"

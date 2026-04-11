@@ -3,7 +3,7 @@ import asyncio
 import httpx
 import pytest
 
-from webprobe.engines import (
+from mcpwebprobe.engines import (
     baidu,
     brave,
     csdn,
@@ -13,7 +13,7 @@ from webprobe.engines import (
     linuxdo,
     startpage,
 )
-from webprobe.types import SearchResult
+from mcpwebprobe.types import SearchResult
 
 
 @pytest.mark.asyncio

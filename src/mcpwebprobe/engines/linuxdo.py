@@ -3,11 +3,11 @@ from __future__ import annotations
 from typing import List
 from urllib.parse import urlparse
 
-from webprobe.config import config
-from webprobe.types import SearchResult
-from webprobe.engines.bing import search_bing
-from webprobe.engines.brave import search_brave
-from webprobe.engines.duckduckgo import search_duckduckgo
+from mcpwebprobe.config import config
+from mcpwebprobe.types import SearchResult
+from mcpwebprobe.engines.bing import search_bing
+from mcpwebprobe.engines.brave import search_brave
+from mcpwebprobe.engines.duckduckgo import search_duckduckgo
 
 
 async def search_linuxdo(query: str, limit: int) -> List[SearchResult]:

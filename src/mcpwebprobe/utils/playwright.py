@@ -3,9 +3,9 @@ import os
 from typing import Optional, Dict, Any, List, Tuple
 from urllib.parse import urlparse, unquote
 
-from webprobe.logging import get_logger
+from mcpwebprobe.logging import get_logger
 
-from webprobe.config import config, get_proxy_url
+from mcpwebprobe.config import config, get_proxy_url
 
 logger = get_logger(__name__)
 

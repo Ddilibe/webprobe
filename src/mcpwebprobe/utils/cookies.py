@@ -4,8 +4,8 @@ import time
 from typing import Optional, Dict, List, Tuple, Any
 from urllib.parse import urlparse, urlunparse
 
-from webprobe.config import config, get_proxy_url
-from webprobe.utils.playwright import load_playwright_client, open_playwright_browser
+from mcpwebprobe.config import config, get_proxy_url
+from mcpwebprobe.utils.playwright import load_playwright_client, open_playwright_browser
 
 COOKIE_CACHE_TTL_MS = 10 * 60 * 1000  # 10 minutes
 COOKIE_WARMUP_DELAY_MS = 1200  # 1.2 seconds

@@ -5,7 +5,7 @@ from typing import Dict
 
 from bs4 import BeautifulSoup
 
-from webprobe.utils.http_client import AsyncHttpClient, BuildHttpRequestOptions
+from mcpwebprobe.utils.http_client import AsyncHttpClient, BuildHttpRequestOptions
 
 _async_http_client = AsyncHttpClient()
 

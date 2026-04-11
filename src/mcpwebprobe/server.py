@@ -6,14 +6,14 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Callable, Dict, Optional, Tuple
 from urllib.parse import parse_qs, urlparse
 
-from webprobe.api import (
+from mcpwebprobe.api import (
     fetch_csdn,
     fetch_github,
     fetch_juejin,
     fetch_linuxdo,
     search,
 )
-from webprobe.logging import get_logger
+from mcpwebprobe.logging import get_logger
 
 logger = get_logger(__name__)
 
